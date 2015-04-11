@@ -14,7 +14,9 @@ public class Extractor : MonoBehaviour {
 	// Update is called once per frame
 	void AddResource () {
 		if (isAlive) {
-			GlobalStats.stats.gain (player);
+			if(GlobalStats.stats!=null){
+				GlobalStats.stats.gain (player);
+			}
 		} else {
 			CancelInvoke();
 		}
