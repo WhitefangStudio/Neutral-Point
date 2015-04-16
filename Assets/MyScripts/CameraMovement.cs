@@ -95,7 +95,7 @@ public class CameraMovement : MonoBehaviour {
 		if (zoomIn== true){
 			if(transform.position.y >(float)maxZoomIn){
 				zoomPos=transform.position;
-				zoomPos.y-=10;
+				zoomPos.y-=50;
 				transform.position = Vector3.Lerp(transform.position,zoomPos, 10f*Time.deltaTime);
 				maxRotate-=1;
 				
@@ -110,7 +110,7 @@ public class CameraMovement : MonoBehaviour {
 		if (zoomOut== true){
 			if(transform.position.y <(float)maxZoomOut){
 				zoomPos=transform.position;
-				zoomPos.y+=10;
+				zoomPos.y+=50;
 				transform.position = Vector3.Lerp(transform.position,zoomPos, 10f*Time.deltaTime);
 				maxRotate+=1;
 				

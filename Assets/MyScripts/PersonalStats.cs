@@ -29,7 +29,6 @@
 			Resource = GlobalStats.stats.getStats (player);
 			ResourceDisplay.text = Resource.ToString();
 			time.text = Mathf.Round(GlobalStats.stats.getTime()).ToString();
-			Debug.Log (gameStarted);
 			
 		}
 		

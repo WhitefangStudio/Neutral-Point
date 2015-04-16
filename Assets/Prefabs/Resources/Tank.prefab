@@ -517,7 +517,7 @@ MonoBehaviour:
   maxNeighbours: 20
   mask:
     serializedVersion: 2
-    m_Bits: 4294966783
+    m_Bits: 4294966779
   layer: 1
   collidesWith: -129
   wallAvoidForce: 1

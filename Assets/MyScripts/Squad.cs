@@ -35,7 +35,8 @@ public class Squad : MonoBehaviour {
 			if (Physics.Raycast	(cam.ScreenPointToRay (Input.mousePosition), out hit, Mathf.Infinity)) {
 				if(target != hit.point){
 					target = hit.point;
-					MoveSquad ();
+					if(Units.Count>0)
+						MoveSquad ();
 				}
 			}
 		}
@@ -46,9 +47,6 @@ public class Squad : MonoBehaviour {
 		for(int i=0; i<Units.Count;i++){
 			if (Units[i].GetComponent<Unit>().selected==true){
 				temp[i]= Units[i].transform.position;
-				//Units[i].GetComponent<AIPatherNew>().move=false;
-				//Units[i].GetComponent<Seeker>().StartPath(Units[i].transform.position, target, Units[i].GetComponent<AIPatherNew>().OnPathComplete);
-				//Units[i].GetComponent<Seeker>().multi
 			}
 		}
 		int j =0;

@@ -16,7 +16,7 @@ public class NetworkManager : MonoBehaviour {
 				}
 	}	
 	void Connect(){
-		PhotonNetwork.ConnectUsingSettings("V001");
+		PhotonNetwork.ConnectUsingSettings("V002");
 	}
 	
 	void OnGUI(){
