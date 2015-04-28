@@ -1,0 +1,72 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   Assets/Materials/Factory 4.mat
+#	new file:   Assets/Models/Materials/defaultMat.mat
+#	new file:   Assets/Models/Materials/defaultMat.mat.meta
+#	new file:   Assets/Models/Parts.meta
+#	new file:   Assets/Models/Parts/construct_barricade.mtl
+#	new file:   Assets/Models/Parts/construct_barricade.mtl.meta
+#	new file:   Assets/Models/Parts/construct_barricade.obj
+#	new file:   Assets/Models/Parts/construct_barricade.obj.meta
+#	new file:   Assets/Models/Parts/construct_welder.mtl
+#	new file:   Assets/Models/Parts/construct_welder.mtl.meta
+#	new file:   Assets/Models/Parts/construct_welder.obj
+#	new file:   Assets/Models/Parts/construct_welder.obj.meta
+#	new file:   Assets/Models/Parts/toggle_cloak.mtl
+#	new file:   Assets/Models/Parts/toggle_cloak.mtl.meta
+#	new file:   Assets/Models/Parts/toggle_cloak.obj
+#	new file:   Assets/Models/Parts/toggle_cloak.obj.meta
+#	new file:   Assets/Models/Parts/toggle_selfdestruct.mtl
+#	new file:   Assets/Models/Parts/toggle_selfdestruct.mtl.meta
+#	new file:   Assets/Models/Parts/toggle_selfdestruct.obj
+#	new file:   Assets/Models/Parts/toggle_selfdestruct.obj.meta
+#	new file:   Assets/Models/Parts/weapon_macgun1.mtl
+#	new file:   Assets/Models/Parts/weapon_macgun1.mtl.meta
+#	new file:   Assets/Models/Parts/weapon_macgun1.obj
+#	new file:   Assets/Models/Parts/weapon_macgun1.obj.meta
+#	new file:   Assets/Models/Parts/weapon_macgun2.mtl
+#	new file:   Assets/Models/Parts/weapon_macgun2.mtl.meta
+#	new file:   Assets/Models/Parts/weapon_macgun2.obj
+#	new file:   Assets/Models/Parts/weapon_macgun2.obj.meta
+#	new file:   Assets/Models/Structures.meta
+#	new file:   Assets/Models/Structures/extractor.mtl
+#	new file:   Assets/Models/Structures/extractor.mtl.meta
+#	new file:   Assets/Models/Structures/extractor.obj
+#	new file:   Assets/Models/Structures/extractor.obj.meta
+#	new file:   Assets/Models/Structures/module_cloak.mtl
+#	new file:   Assets/Models/Structures/module_cloak.mtl.meta
+#	new file:   Assets/Models/Structures/module_cloak.obj
+#	new file:   Assets/Models/Structures/module_cloak.obj.meta
+#	new file:   Assets/Models/Structures/module_macgun.mtl
+#	new file:   Assets/Models/Structures/module_macgun.mtl.meta
+#	new file:   Assets/Models/Structures/module_macgun.obj
+#	new file:   Assets/Models/Structures/module_macgun.obj.meta
+#	new file:   Assets/Models/Structures/module_welder.mtl
+#	new file:   Assets/Models/Structures/module_welder.mtl.meta
+#	new file:   Assets/Models/Structures/module_welder.obj
+#	new file:   Assets/Models/Structures/module_welder.obj.meta
+#	new file:   Assets/Models/Structures/spawn point.mtl
+#	new file:   Assets/Models/Structures/spawn point.mtl.meta
+#	new file:   Assets/Models/Structures/spawn point.obj
+#	new file:   Assets/Models/Structures/spawn point.obj.meta
+#	new file:   Assets/Models/derpwagon test.mtl
+#	new file:   Assets/Models/derpwagon test.mtl.meta
+#	new file:   Assets/Models/derpwagon test.obj
+#	new file:   Assets/Models/derpwagon test.obj.meta
+#	new file:   Assets/Models/scalecube.mtl
+#	new file:   Assets/Models/scalecube.mtl.meta
+#	new file:   Assets/Models/scalecube.obj
+#	new file:   Assets/Models/scalecube.obj.meta
+#	modified:   Assets/MyScripts/Building Scripts/Factory.cs
+#	new file:   Assets/Prefabs/Resources/DerpWagon.prefab
+#	new file:   Assets/Prefabs/Resources/DerpWagon.prefab.meta
+#	new file:   Assets/Prefabs/Resources/Materials/Shield.mat
+#	new file:   Assets/Prefabs/Resources/Materials/Shield.mat.meta
+#	modified:   ProjectSettings/QualitySettings.asset
+#
+
