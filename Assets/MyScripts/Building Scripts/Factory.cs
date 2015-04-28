@@ -8,6 +8,8 @@ public class Factory : MonoBehaviour {
 
 	GameObject[] slots;
 	public string[] partsList;
+	public enum blah {Extractor,Weapon};
+	public blah bl;
 
 	// Use this for initialization
 
