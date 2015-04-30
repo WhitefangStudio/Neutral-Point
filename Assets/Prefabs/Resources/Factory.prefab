@@ -186,7 +186,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185188}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6f9078302b21ce4f8397b05ac8033e8, type: 3}
   m_Name: 
@@ -194,6 +194,7 @@ MonoBehaviour:
   player: 1
   position: 0
   partsList: []
+  bl: 0
 --- !u!114 &11488818
 MonoBehaviour:
   m_ObjectHideFlags: 1
