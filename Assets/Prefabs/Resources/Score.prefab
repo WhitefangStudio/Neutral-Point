@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 497608}
   - 114: {fileID: 11430910}
   - 114: {fileID: 11474582}
-  - 114: {fileID: 11477472}
   m_Layer: 0
   m_Name: Score
   m_TagString: Untagged
@@ -62,18 +61,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStarted: 0
---- !u!114 &11477472
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 183870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a66a17deb3f6aa340901db2c7b19bfa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Factory: {fileID: 197168, guid: 98f74fb967af5174ebec9a6937af0bfd, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

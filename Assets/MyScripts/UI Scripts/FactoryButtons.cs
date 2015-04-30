@@ -31,11 +31,8 @@ public class FactoryButtons : MonoBehaviour {
 		GameObject Tank=(GameObject)PhotonNetwork.Instantiate ("Tank", new Vector3(factory.transform.position.x+20,30,factory.transform.position.z), Quaternion.identity,0);
 		//Tank.GetComponent<ClickToMove>().enabled = true;
 		Tank.GetComponent<Unit>().enabled = true;
-		Tank.GetComponent<TextLookAt>().enabled = true;
 		Tank.GetComponent<AIPatherNew>().enabled = true;
-		Tank.GetComponent<TextLookAtEnemy>().enabled = false;
 		Tank.gameObject.tag= "Tank";
-		squad.addToOwnedList(Tank);
 	}
 
 	public void slot(int part,int pos){

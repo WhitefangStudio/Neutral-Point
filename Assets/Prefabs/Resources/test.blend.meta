@@ -1,13 +1,22 @@
 fileFormatVersion: 2
-guid: 830e5376bbc70e0418ae9e9bebdec009
+guid: 4ae36ae4e33529a4cb007b7b466fd467
+timeCreated: 1430335770
+licenseType: Free
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 18
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
+    100000: Circle
+    100002: Cube
+    100004: //RootNode
+    400000: Circle
+    400002: Cube
+    400004: //RootNode
+    2300000: Circle
+    2300002: Cube
+    3300000: Circle
+    3300002: Cube
     4300000: Cube
+    4300002: Circle
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -37,11 +46,13 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
@@ -64,3 +75,5 @@ ModelImporter:
   animationType: 2
   additionalBone: 0
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

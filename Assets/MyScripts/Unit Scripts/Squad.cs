@@ -8,7 +8,6 @@ public class Squad : MonoBehaviour {
 	Vector3 target;
 	Path path;
 	private Camera cam = null;
-	List<GameObject> Units;
 	
 	
 	// Use this for initialization
@@ -16,7 +15,6 @@ public class Squad : MonoBehaviour {
 		if (GameObject.Find ("Main Camera(Clone)").GetComponent<Camera>() != null) {
 			cam = GameObject.Find ("Main Camera(Clone)").GetComponent<Camera>();
 		}
-		Units = new List<GameObject>();
 		target = new Vector3 (0, 0, 0);
 	}
 	
@@ -25,17 +23,13 @@ public class Squad : MonoBehaviour {
 		CheckMouse();
 	}
 	
-	public void addToOwnedList(GameObject newUnit){
-		Units.Add(newUnit);
-	}
-	
 	void CheckMouse(){
 		if (Input.GetMouseButtonUp (1)) {
 			RaycastHit hit;
 			if (Physics.Raycast	(cam.ScreenPointToRay (Input.mousePosition), out hit, Mathf.Infinity)) {
 				if(target != hit.point){
 					target = hit.point;
-					if(Units.Count>0)
+					if(Selected.selected.Count()>0)
 						MoveSquad ();
 				}
 			}
@@ -43,28 +37,31 @@ public class Squad : MonoBehaviour {
 	}
 	
 	void MoveSquad(){
-		Vector3[] temp = new Vector3[Units.Count];
-		for(int i=0; i<Units.Count;i++){
-			if (Units[i].GetComponent<Unit>().selected==true){
-				temp[i]= Units[i].transform.position;
+		int Count =Selected.selected.Count();
+		if (Selected.selected.Count()>0) {
+			Vector3[] temp = new Vector3[Count];
+			for (int i=0; i<Count; i++) {
+				if (Selected.selected.isMovable(i)) {
+					temp [i] = Selected.selected.getAtPosition(i).position;
+				}
 			}
+			int j = 0;
+			bool finished = false;
+			do {
+				if (Selected.selected.isMovable(j)) {
+					finished = true;
+					Selected.selected.getAtPosition(j).GetComponent<Seeker> ().StartMultiTargetPath (temp, target, true, callbacks, -1);
+				}
+				j++;
+			} while(!finished&&j<Count);
 		}
-		int j =0;
-		bool finished=false;
-		do {
-			if(Units[j].GetComponent<Unit>().selected==true){
-				finished = true;
-				Units[j].GetComponent<Seeker>().StartMultiTargetPath(temp,target,true,callbacks,-1);
-			}
-			j++;
-		}while(!finished);
 	}
 		void callbacks(Path p){
 			MultiTargetPath mp = p as MultiTargetPath;
 			List<Vector3>[] paths = mp.vectorPaths;
-			for (int k=0; k<Units.Count; k++) {
-				if (Units [k].GetComponent<Unit> ().selected == true) {
-					Units[k].GetComponent<AIPatherNew>().takePath(paths[k]);
+			for (int k=0; k<Selected.selected.Count(); k++) {
+			if (Selected.selected.getAtPosition(k).GetComponent<Unit> ()!=null) {
+				Selected.selected.getAtPosition(k).GetComponent<AIPatherNew>().takePath(paths[k]);
 			}
 
 		}

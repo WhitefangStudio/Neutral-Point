@@ -58,7 +58,7 @@ GameObject:
   - 114: {fileID: 11400026}
   - 114: {fileID: 11400028}
   m_Layer: 0
-  m_Name: Tank
+  m_Name: DerpWagon
   m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,6 +397,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcbea04512694cc44a928a51d74df6da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  face: {x: 0, y: 0, z: 0}
+  text: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -495,6 +498,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 569df03383c964d4483a11e244a1731c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  face: {x: 0, y: 0, z: 0}
+  text: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1

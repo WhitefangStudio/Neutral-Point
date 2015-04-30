@@ -24,11 +24,8 @@ public class Factory : MonoBehaviour {
 	}
 
 	void OnMouseUpAsButton(){
-		/*if (this.gameObject.activeInHierarchy) {
-			Debug.Log ("clicked");
-			selected = true;
-			UIPanelManager.Panel.slotsView ();
-		}*/
+		Selected.selected.setGameObject (this.transform);
+		Debug.Log ("clicked"+this.transform.ToString());
 	}
 	// Update is called once per frame
 	void Update () {

@@ -16,7 +16,6 @@ public class UIPanelManager : MonoBehaviour {
 	public void slotsView (GameObject factory) {
 		Factory.SetActive (false);
 		Slots.SetActive (true);
-		Slots.GetComponent<FactoryButtons> ().setPosition (factory);
 	}
 	
 	// Update is called once per frame

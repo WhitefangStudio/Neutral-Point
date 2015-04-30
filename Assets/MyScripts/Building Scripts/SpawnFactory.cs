@@ -4,7 +4,7 @@ using System.Collections;
 public class SpawnFactory : MonoBehaviour {
 
 	// Use this for initialization
-	public GameObject Factory;
+	//public GameObject Factory;
 	
 	GameObject[] factories;
 	int currFact;
@@ -60,7 +60,7 @@ public class SpawnFactory : MonoBehaviour {
 				}
 				avgDist/=4;
 				for (int i=0; i<4;i++){
-					if(Mathf.Abs(avgDist-hits[i].distance)>1){
+					if(Mathf.Abs(avgDist-hits[i].distance)>5){
 						isBuildable=false;
 						ShowErrorMessage.SEM.displayError("Terrain Uneven");
 					}

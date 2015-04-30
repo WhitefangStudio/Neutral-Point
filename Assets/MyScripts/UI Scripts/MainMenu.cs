@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour {
 
 	// Use this for initialization
 	public void TestLeve(){
-		Application.LoadLevel ("Game");
+		Application.LoadLevel ("NewUI");
 	}
 	
 	// Update is called once per frame

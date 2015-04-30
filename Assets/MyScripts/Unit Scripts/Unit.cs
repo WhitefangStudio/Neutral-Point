@@ -24,7 +24,11 @@ public class Unit : MonoBehaviour {
 				if ((Mathf.Abs (Camera_UnitSelect.selection.width) >2) && (Mathf.Abs (Camera_UnitSelect.selection.height)>2)){
 					Vector3 camPos = Camera.main.WorldToScreenPoint(transform.position);
 					camPos.y= Camera_UnitSelect.InvertMouseY(camPos.y);
-					selected = Camera_UnitSelect.selection.Contains(camPos);
+					if(Camera_UnitSelect.selection.Contains(camPos)){
+						selected = Camera_UnitSelect.selection.Contains(camPos);
+						Selected.selected.addToSelected (this.transform);
+					}
+
 				}else{
 					selected =false;
 					selected = selected2;
@@ -63,5 +67,6 @@ public class Unit : MonoBehaviour {
 	void OnMouseUpAsButton(){
 		Debug.Log ("clicked");
 		selected2 = true;
+		Selected.selected.addToSelected (this.transform);
 	}
 }
