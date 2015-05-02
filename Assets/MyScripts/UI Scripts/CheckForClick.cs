@@ -7,6 +7,7 @@ public class CheckForClick : MonoBehaviour,IPointerDownHandler{
 	public void OnPointerDown(PointerEventData e){
 		if (e.button==PointerEventData.InputButton.Left) {
 			Selected.selected.setGameObject ();
+			TriangleUI.TUI.PFM.hidePanel();
 		}
 	}
 }

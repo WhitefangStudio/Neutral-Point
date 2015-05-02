@@ -7,6 +7,10 @@ public class UIPanelManager : MonoBehaviour {
 
 	public GameObject Factory;
 	public GameObject Slots;
+	enum view{Factory,Slots}
+	new view v=view.Slots;
+
+	float timer=0;
 
 	void Awake(){
 		Panel = this;
@@ -14,13 +18,37 @@ public class UIPanelManager : MonoBehaviour {
 
 	// Use this for initialization
 	public void slotsView (GameObject factory) {
-		Factory.SetActive (false);
-		Slots.SetActive (true);
+		if (v != view.Slots) {
+			Shutter.shutter.toggleShutterAnim ();
+			v = view.Slots;
+			timer = 0;
+		}
 	}
 	
 	// Update is called once per frame
 	public void factoryView () {
-		Factory.SetActive (true);
-		Slots.SetActive (false);
+		if (v != view.Factory) {
+			Shutter.shutter.toggleShutterAnim ();
+			v = view.Factory;
+			timer = 0;
+		}
+	}
+
+	void Update(){
+		if(timer<1){
+			timer+=Time.deltaTime*5;
+		}
+		if (timer >= 1) {
+			if(v==view.Factory){
+				Factory.SetActive (true);
+				Slots.SetActive (false);
+			}
+			if(v==view.Slots){
+				Factory.SetActive (false);
+				Slots.SetActive (true);
+			}
+
+		}
+
 	}
 }
