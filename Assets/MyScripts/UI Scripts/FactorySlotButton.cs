@@ -4,20 +4,19 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class FactorySlotButton : MonoBehaviour,IPointerClickHandler {
-	public PartNavigation PV;
-	PopFromSide Pop;
-
-	int position;
+	public PartNavigation.WeapType position;
+	public int pos;
 	public int menuLevel;
 	Text info;
 	Image img;
 
+
 	void Start(){
-		Pop = TriangleUI.TUI.PFM;
 		info = transform.GetChild (0).GetChild (0).GetComponent<Text>();
 		img = transform.GetChild (1).GetComponent <Image>();
 		menuLevel = 0;
 	}
+	
 
 	public void setInfo(string infoString){
 		if (infoString != null||infoString!="") {
@@ -25,6 +24,7 @@ public class FactorySlotButton : MonoBehaviour,IPointerClickHandler {
 			info.text = infoString;
 		}
 		if (infoString == null||infoString=="") {
+			info.text="";
 			GetComponent<Button>().interactable=false;
 		}
 	}
@@ -34,18 +34,13 @@ public class FactorySlotButton : MonoBehaviour,IPointerClickHandler {
 	public void setMenuLevel(int level){
 		menuLevel = level;
 	}
-	public void setPosition(int position){
-		this.position=position;
-	}
 
 	public void OnPointerClick(PointerEventData e){
-		if (menuLevel == 1) {
-			Pop.showPanel();
-		}
-		if (menuLevel == 0) {
-			menuLevel = 1;
-			PV.setMenuLevel (menuLevel, position);
-			Shutter.shutter.toggleShutterAnim();
+		if (GetComponent<Button> ().interactable != false) {
+			PartNavigation.PV.setMenuLevel (menuLevel, position, pos);
+			if (menuLevel == 0) {
+				menuLevel = 1;
+			}
 		}
 	}
 }

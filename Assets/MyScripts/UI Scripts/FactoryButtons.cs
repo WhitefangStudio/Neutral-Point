@@ -37,6 +37,6 @@ public class FactoryButtons : MonoBehaviour {
 
 	public void slot(int part,int pos){
 		//Debug.Log (factory.ToString());
-		factory.GetComponent<Factory> ().setPosition (part, pos);
+		//factory.GetComponent<Factory> ().setPosition (part, pos);
 	}
 }

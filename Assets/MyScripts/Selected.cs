@@ -44,5 +44,14 @@ public class Selected : MonoBehaviour {
 		}
 	}
 
+	public Transform getFactory(){
+		if (selectedUnit.Count == 1) {
+			if(selectedUnit[0].GetComponent<Factory> ()!=null){
+				return selectedUnit[0];
+			}
+		}
+		return null;
+	}
+
 
 }

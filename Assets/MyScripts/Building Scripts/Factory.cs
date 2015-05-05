@@ -7,9 +7,6 @@ public class Factory : MonoBehaviour {
 	public int position;
 
 	GameObject[] slots;
-	public string[] partsList;
-	public enum blah {Extractor,Weapon};
-	public blah bl;
 
 	// Use this for initialization
 
@@ -19,8 +16,6 @@ public class Factory : MonoBehaviour {
 	}
 	void OnEnable(){
 		slots = new GameObject[7];
-		partsList = new string[1];
-		partsList [0] = "Extractor";
 	}
 
 	void OnMouseUpAsButton(){
@@ -37,9 +32,10 @@ public class Factory : MonoBehaviour {
 		}*/
 
 	}
-	public void setPosition(int part,int pos){
+	public void setPosition(string part,int pos){
+		Debug.Log (part);
 		
-		slots [pos] = PhotonNetwork.Instantiate (partsList [part], transform.GetChild (pos).position, Quaternion.identity, 0);
+		slots [pos] = PhotonNetwork.Instantiate (part, transform.GetChild (pos).position, Quaternion.identity, 0);
 		slots [pos].transform.SetParent (this.transform.GetChild(pos));
 
 

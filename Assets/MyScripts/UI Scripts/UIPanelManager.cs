@@ -20,6 +20,7 @@ public class UIPanelManager : MonoBehaviour {
 	public void slotsView (GameObject factory) {
 		if (v != view.Slots) {
 			Shutter.shutter.toggleShutterAnim ();
+			Shutter.shutter.shutterOther();
 			v = view.Slots;
 			timer = 0;
 		}
@@ -29,6 +30,7 @@ public class UIPanelManager : MonoBehaviour {
 	public void factoryView () {
 		if (v != view.Factory) {
 			Shutter.shutter.toggleShutterAnim ();
+			Shutter.shutter.shutterOther();
 			v = view.Factory;
 			timer = 0;
 		}

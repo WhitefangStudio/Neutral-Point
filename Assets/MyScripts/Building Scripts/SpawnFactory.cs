@@ -32,6 +32,10 @@ public class SpawnFactory : MonoBehaviour {
 		}
 	}
 	void Update () {
+		if (Player == -1) {
+			Player=PhotonNetwork.player.ID;
+		}
+
 		if (placing == true) {
 			RaycastHit hit;
 			if (Physics.Raycast	(cam.ScreenPointToRay (Input.mousePosition), out hit,Mathf.Infinity)) {
