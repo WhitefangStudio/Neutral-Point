@@ -2912,7 +2912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059db43a7cec30141ac64da4ecb69df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
+  radius: 15
   Sun: {fileID: 0}
   speed: 0
   isMoon: 0

@@ -14,6 +14,7 @@ public class PlanetsRotate : MonoBehaviour {
 		setup ();
 	}
 	public void setup(){
+		if(Sun!=null){
 		float scale = Random.Range (5, 15);
 		//transform.localScale = new Vector3 (scale, scale, scale);
 		float randX = Random.Range (-4*radius,4*radius);
@@ -40,6 +41,8 @@ public class PlanetsRotate : MonoBehaviour {
 			speed = Mathf.Log (Vector3.Distance (Sun.position, transform.position));
 		if (isMoon)
 			speed = Mathf.Log (Vector3.Distance (Sun.position, transform.position))*6;
+
+		}
 	}
 	// Update is called once per frame
 	void Update () {
