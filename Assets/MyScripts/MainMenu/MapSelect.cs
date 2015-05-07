@@ -11,7 +11,7 @@ public class MapSelect : MonoBehaviour {
 	}
 	public void goToP1(){
 		b = true;
-		PR.radius = 5;
+		PR.radius = 15;
 		PR.Sun=planet1;
 	}
 

@@ -2,14 +2,23 @@
 using System.Collections;
 
 public class UIPanelManager : MonoBehaviour {
+	/*
+	 * Switches between the Factory editor and the unit selection panels
+	 * 
+	 */
 
+	//stastic reference so this is accessible anywhere
 	public static UIPanelManager Panel;
 
+	//references to respective panels, dragged manually via inspector
 	public GameObject Factory;
 	public GameObject Slots;
+
+	//enumeration to decide which view is being displayed
 	enum view{Factory,Slots}
 	new view v=view.Slots;
 
+	//delay timer to match up with shutter animations
 	float timer=0;
 
 	void Awake(){

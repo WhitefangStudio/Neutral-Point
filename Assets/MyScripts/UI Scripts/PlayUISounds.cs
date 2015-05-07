@@ -12,5 +12,7 @@ public class PlayUISounds : MonoBehaviour {
 	public void click(){
 		sounds.Play ();
 	}
+	public void beep(){
 
+	}
 }

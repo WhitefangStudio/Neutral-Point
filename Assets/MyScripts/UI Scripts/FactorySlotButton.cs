@@ -17,6 +17,10 @@ public class FactorySlotButton : MonoBehaviour,IPointerClickHandler {
 		menuLevel = 0;
 	}
 	
+	/*
+	 * Sets the buttons info text to a passed string
+	 * Disables button, if info string is null.
+	 */
 
 	public void setInfo(string infoString){
 		if (infoString != null||infoString!="") {
@@ -28,6 +32,10 @@ public class FactorySlotButton : MonoBehaviour,IPointerClickHandler {
 			GetComponent<Button>().interactable=false;
 		}
 	}
+
+	/*
+	 * 
+	 */
 	public void setImage(Image image){
 		img = image;
 	}

@@ -6,7 +6,10 @@ public class PartNavigation : MonoBehaviour {
 
 	public static PartNavigation PV;
 
+	//enumeration to determine category of weapon
 	public enum WeapType{smallArms,largeArms,artillery};
+
+	//
 	public string[] levelOne;
 	List<GameObject> smallArms;
 	List<GameObject> largeArms;
@@ -15,6 +18,7 @@ public class PartNavigation : MonoBehaviour {
 	public GameObject[] slots;
 	int menuLevel;
 
+	//determines which blueprint slot is being edited
 	int slotPosition;
 	WeapType position;
 	float timer;
@@ -44,6 +48,10 @@ public class PartNavigation : MonoBehaviour {
 		sortWeapons();
 	}
 
+
+	/*
+	 * populating weapon lists per type using enumeration settings for each weapon object
+	 */
 	void sortWeapons(){
 		for (int i = 0; i<slots.Length; i++) {
 			if(slots[i].GetComponent<SlotInfoPackage>().getWeaponType()==WeapType.smallArms){
@@ -60,6 +68,9 @@ public class PartNavigation : MonoBehaviour {
 		}
 	}
 
+	/*
+	 * determining what kind of button each of the 6 selection buttons will be depending on current menu level
+	 */
 	void OnEnable(){
 		menuLevel = 0;
 		if (FSB != null) {
@@ -69,6 +80,11 @@ public class PartNavigation : MonoBehaviour {
 		}
 	}
 
+	/*
+	 * ensures that all buttons are on the same menu level
+	 * hides triangle panel if not needed.
+	 * and toggles shutter
+	 */
 	public void setMenuLevel(int menuLevel,WeapType position, int pos){
 		if (menuLevel == 0) {
 			Shutter.shutter.toggleShutterAnim();
@@ -96,6 +112,11 @@ public class PartNavigation : MonoBehaviour {
 	
 	}
 
+	/*
+	 * Sets menu level
+	 * called when c is pushed to go back a menu level
+	 * 
+	 */
 	public void setMenuLevel(int menuLevel){
 		TriangleUI.TUI.PFM.hidePanel();
 		this.menuLevel = menuLevel;
@@ -121,6 +142,11 @@ public class PartNavigation : MonoBehaviour {
 		change ();
 
 	}
+
+
+	/*called on update
+	 * actually updates button info and sets them according to menu level and selected weapon type
+	 */
 	void change(){
 		if(timer<1){
 			timer+=Time.deltaTime*5;
