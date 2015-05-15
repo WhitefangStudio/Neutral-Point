@@ -7,6 +7,10 @@ public class Factory : MonoBehaviour {
 	public int position;
 
 	GameObject[] slots;
+	GameObject Body;
+	GameObject Shield;
+	GameObject Armor;
+
 
 	// Use this for initialization
 
@@ -15,7 +19,6 @@ public class Factory : MonoBehaviour {
 
 	}
 	void OnEnable(){
-		slots = new GameObject[7];
 	}
 
 	void OnMouseUpAsButton(){
@@ -33,11 +36,57 @@ public class Factory : MonoBehaviour {
 
 	}
 	public void setPosition(string part,int pos){
-		Debug.Log (part);
-		
-		slots [pos] = PhotonNetwork.Instantiate (part, transform.GetChild (pos).position, Quaternion.identity, 0);
-		slots [pos].transform.SetParent (this.transform.GetChild(pos));
-
-
+		if (Body != null) {
+			if (slots [pos] == null) {
+				slots [pos] = PhotonNetwork.Instantiate (part, transform.GetChild (pos).position, Quaternion.identity, 0);
+				slots [pos].transform.SetParent (Body.transform.GetChild (pos));
+			}
+		}
 	}
+
+	public void setPosition(GameObject part,int pos){
+		string name = part.name;
+		name ="Parts/"+name.Replace("(Clone)", "");
+		Debug.Log (name);
+		if (Body != null) {
+			if (slots [pos] == null) {
+				slots [pos] = PhotonNetwork.Instantiate (name, Body.transform.GetChild (pos).position, Quaternion.identity, 0);
+				slots [pos].transform.SetParent (Body.transform.GetChild (pos));
+			}
+		}
+	}
+	public void setBody(GameObject part){
+		string name = part.name;
+		name ="Parts/"+name.Replace("(Clone)", "");
+		if (Body == null) {
+			Body = PhotonNetwork.Instantiate (name, transform.GetChild (0).position, transform.rotation, 0);
+			Body.transform.SetParent (this.transform.GetChild (0));
+			slots = new GameObject[Body.transform.childCount];
+			BluePrintUI.BPUI.FindActiveSlots ();
+		}
+		
+		
+	}
+
+	public int getOpenSlots (){
+		if (slots == null) {
+			return -1;
+		}else{
+			return slots.Length;
+		}
+	}
+
+	public bool hasBody(){
+		if (Body != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public void clearPart(int position){
+		PhotonNetwork.Destroy (slots [position]);
+		slots [position] = null;
+		BluePrintUI.BPUI.FindActiveSlots ();
+	}
+
 }

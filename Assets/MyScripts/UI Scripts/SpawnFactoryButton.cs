@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class SpawnFactoryButton : MonoBehaviour ,IPointerClickHandler{
+	public int factNum;
 	SpawnFactory sf;
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,11 @@ public class SpawnFactoryButton : MonoBehaviour ,IPointerClickHandler{
 	}
 
 	public void OnPointerClick(PointerEventData e){
-		sf.place (0);
+		if (sf.getFactory (factNum) == null) {
+			sf.place (factNum);
+		} else {
+			Selected.selected.setGameObject(sf.getFactory(factNum).transform);
+		}
+
 	}
 }

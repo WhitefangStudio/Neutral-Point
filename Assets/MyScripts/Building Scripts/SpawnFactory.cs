@@ -12,16 +12,17 @@ public class SpawnFactory : MonoBehaviour {
 	Camera cam;
 	bool placing=false;
 	int Player;
-	
+	FactoryBoundingBox bounds;
+	public LayerMask LM;
 	void Start(){
 		factories = new GameObject[6];
 		Player = PhotonNetwork.player.ID;
-
 
 	}
 
 	public void place(int Position){
 		if(placing==false){
+			bounds.Visible(false);
 			currFact=Position;
 			if(cam==null){
 				if (GameObject.Find ("Main Camera(Clone)").GetComponent<Camera>() != null) {
@@ -35,10 +36,12 @@ public class SpawnFactory : MonoBehaviour {
 		if (Player == -1) {
 			Player=PhotonNetwork.player.ID;
 		}
-
+		if (bounds == null) {
+			bounds = FactoryBoundingBox.FBBox.getBox (Player);
+		}
 		if (placing == true) {
 			RaycastHit hit;
-			if (Physics.Raycast	(cam.ScreenPointToRay (Input.mousePosition), out hit,Mathf.Infinity)) {
+			if (Physics.Raycast	(cam.ScreenPointToRay (Input.mousePosition), out hit,Mathf.Infinity,LM)) {
 				factories[currFact].transform.position= new Vector3(hit.point.x,hit.point.y+
 				     ((factories[currFact].GetComponent<Renderer>().bounds.size.y)/1.7f),hit.point.z);
 				factories[currFact].GetComponent<BuildingPosition>().SendUpdate();
@@ -59,7 +62,7 @@ public class SpawnFactory : MonoBehaviour {
 				RaycastHit[] hits= new RaycastHit[4];
 				float avgDist=0;
 				for (int i=0; i<4;i++){
-					Physics.Raycast (positions[i],Vector3.down, out hits[i], Mathf.Infinity);
+					Physics.Raycast (positions[i],Vector3.down, out hits[i], Mathf.Infinity,LM);
 					avgDist+=hits[i].distance;
 				}
 				avgDist/=4;
@@ -69,7 +72,7 @@ public class SpawnFactory : MonoBehaviour {
 						ShowErrorMessage.SEM.displayError("Terrain Uneven");
 					}
 				}
-				if(!(FactoryBoundingBox.FBBox.Box(Player).Contains(factories[currFact].transform.position))){
+				if(!(bounds.Box(Player).Contains(factories[currFact].transform.position))){
 					isBuildable=false;
 					ShowErrorMessage.SEM.displayError("Outside of Placement Area");
 				}
@@ -77,6 +80,7 @@ public class SpawnFactory : MonoBehaviour {
 					if(isBuildable){
 					Debug.Log ("placed");
 					placing = false;
+					bounds.Visible(false);
 					factories[currFact].GetComponent<BoxCollider>().enabled= (true);
 					factories[currFact].GetComponent<BuildingPosition>().SendUpdate();
 					factories[currFact].GetComponent<Factory>().enabled=true;
@@ -90,6 +94,7 @@ public class SpawnFactory : MonoBehaviour {
 			if(Input.GetMouseButtonDown(1)){
 				placing = false;
 				PhotonNetwork.Destroy(factories[currFact]);
+				bounds.Visible(false);
 			}
 		}
 
@@ -109,13 +114,22 @@ public class SpawnFactory : MonoBehaviour {
 	 void StartFactoryCheck(int Position){
 		if (factories[Position]==null) {
 			RaycastHit hit;
-			if (Physics.Raycast	(cam.ScreenPointToRay (Input.mousePosition), out hit, Mathf.Infinity)) {
+			if (Physics.Raycast	(cam.ScreenPointToRay (Input.mousePosition), out hit, Mathf.Infinity,LM)) {
 					target = hit.point;
 			}
 			factories[Position] = (GameObject)PhotonNetwork.Instantiate ("Factory", target, Quaternion.Euler(-90,0,0),0);
 			factories[Position].GetComponent<BoxCollider>().enabled= (false);
 			placing=true;
+			bounds.Visible(true);
 
+		}
+	}
+
+	public GameObject getFactory(int position){
+		if (factories [position] != null&&placing==false) {
+			return factories [position];
+		} else {
+			return null;
 		}
 	}
 }

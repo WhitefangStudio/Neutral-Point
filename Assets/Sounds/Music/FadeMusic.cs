@@ -3,12 +3,10 @@ using System.Collections;
 
 public class FadeMusic : MonoBehaviour {
 	public AudioSource audio;
-	int volume;
 	float audio2Volume=0f;
 	bool fadein;
 	// Use this for initialization
 	void Start () {
-		volume = 0;
 		setFade (true);
 
 	}

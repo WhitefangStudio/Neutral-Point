@@ -4,13 +4,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TriangleButtons : MonoBehaviour, IPointerClickHandler{
-	int pos;
+	public int pos;
 	Text name;
 	GameObject part;
 
 	public void OnPointerClick(PointerEventData e){
 		if (e.button == PointerEventData.InputButton.Left) {
-			Selected.selected.getFactory().GetComponent<Factory>().setPosition(part.GetComponent<SlotInfo>().name,pos);
+			Selected.selected.getFactory().GetComponent<Factory>().setPosition(part,pos);
 			PartNavigation.PV.setMenuLevel (0);
 		}
 	}
@@ -27,7 +27,7 @@ public class TriangleButtons : MonoBehaviour, IPointerClickHandler{
 
 	public void setObject(GameObject part){
 		this.part = part;
-		setName (part.GetComponent<SlotInfo> ().getStrength ());
+		setName (part.GetComponent<Slot_Weapon> ().getStrength());
 	}
 
 	// Use this for initialization

@@ -13,6 +13,7 @@ public class CheckForClick : MonoBehaviour,IPointerDownHandler{
 		if (e.button==PointerEventData.InputButton.Left) {
 			Selected.selected.setGameObject ();
 			TriangleUI.TUI.PFM.hidePanel();
+			BluePrintUI.BPUI.buttonClicked(-1);
 		}
 	}
 }
