@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Selected : MonoBehaviour {
+	int player;
 	public static Selected selected;
 	public List<Transform> selectedUnit;
 	// Use this for initialization
 	void Start () {
 		selected = this;
+		selectedUnit = new List<Transform> ();
 	}
 
 	public void setGameObject(){
@@ -19,7 +21,9 @@ public class Selected : MonoBehaviour {
 		selectedUnit.Clear ();
 		selectedUnit.Add(unit);
 		if (unit.GetComponent<Factory> ()!=null) {
-			UIPanelManager.Panel.slotsView(unit.gameObject);
+			if(unit.GetComponent<Factory> ().player==this.player){
+				UIPanelManager.Panel.slotsView(unit.gameObject);
+			}
 		}
 	}
 
@@ -37,9 +41,13 @@ public class Selected : MonoBehaviour {
 		return selectedUnit[i];
 	}
 	public bool isMovable(int i){
-		if ((selectedUnit [i].GetComponent<Unit> () != null)&&(selectedUnit[i].GetComponent<Seeker> ()!=null)) {
-			return true;
-		} else {
+		if (selectedUnit.Count > 0) {
+			if ((selectedUnit [i].GetComponent<Unit> () != null) && (selectedUnit [i].GetComponent<Seeker> () != null)) {
+				return true;
+			}else {
+				return false;
+			}
+		}else {
 			return false;
 		}
 	}
@@ -51,6 +59,14 @@ public class Selected : MonoBehaviour {
 			}
 		}
 		return null;
+	}
+	public void removeFromSelected(Transform Unit){
+		if(selectedUnit.Contains(Unit)){
+			selectedUnit.Remove (Unit);
+		}
+	}
+	public void setPlayer(int player){
+		this.player = player;
 	}
 
 

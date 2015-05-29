@@ -20,9 +20,6 @@ public class Camera_UnitSelect : MonoBehaviour {
 	}
 	
 	private void checkCamera(){
-	
-
-	
 		if (Input.GetMouseButtonDown (0)){
 			startClick=Input.mousePosition;
 		}else if(Input.GetMouseButtonUp (0)){
@@ -45,8 +42,6 @@ public class Camera_UnitSelect : MonoBehaviour {
 		float height=InvertMouseY(Input.mousePosition.y)-InvertMouseY(startClick.y);
 		
 		if (Input.GetMouseButton(0)){
-
-			
 			if ((startX< Input.mousePosition.x)&&( startY <InvertMouseY(Input.mousePosition.y))){
 				selection = new Rect(startX, startY,width,height);
 			}

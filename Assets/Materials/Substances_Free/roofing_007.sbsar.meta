@@ -1,12 +1,16 @@
 fileFormatVersion: 2
 guid: d70a26c13e3818642ba62774443962e2
+timeCreated: 1432424497
+licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
   materialInstances:
-  - serializedVersion: 10
+  - serializedVersion: 15
     name: roofing_007
     prototypeName: roofing_007
-    shaderName: Bumped Specular
+    shader: {fileID: 4, guid: 0000000000000000f000000000000000, type: 0}
+    shaderKeywords: _NORMALMAP
+    renderQueue: -1
     inputs:
     - name: $normalformat
       value:
@@ -124,6 +128,7 @@ SubstanceImporter:
       serializedVersion: 5
       offset: {x: 0, y: 0}
       scale: {x: 1, y: 1}
+      generateMipmaps: 1
       generateAllOutputs: 1
       animationUpdateRate: 42
     materialProperties:
@@ -193,6 +198,15 @@ SubstanceImporter:
       filterMode: 1
       aniso: 1
       wrapMode: 0
+    textureAssignments:
+    - shaderProp:
+        name: _MainTex
+      material: {instanceID: 0}
+      baseUID: 3162204579
+    - shaderProp:
+        name: _BumpMap
+      material: {instanceID: 0}
+      baseUID: 3162207107
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 
@@ -202,3 +216,5 @@ SubstanceImporter:
       loadingBehavior: 1
   deletedPrototypes: []
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

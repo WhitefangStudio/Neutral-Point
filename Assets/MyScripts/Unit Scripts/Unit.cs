@@ -11,16 +11,21 @@ public class Unit : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ren = (Renderer)GetComponentInChildren<MeshRenderer>();
+		player= this.gameObject.GetPhotonView().ownerId;
 
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetMouseButtonDown (0)) {
+			if(!Selected.selected.selectedUnit.Contains(this.transform)){
+				selected=false;
+			}
+		}
 		
 		if(Input.GetMouseButtonUp (0)){
-			if(Input.mousePosition.y>190){
+			//if(Input.mousePosition.y>190){
 				if ((Mathf.Abs (Camera_UnitSelect.selection.width) >2) && (Mathf.Abs (Camera_UnitSelect.selection.height)>2)){
 					Vector3 camPos = Camera.main.WorldToScreenPoint(transform.position);
 					camPos.y= Camera_UnitSelect.InvertMouseY(camPos.y);
@@ -34,7 +39,7 @@ public class Unit : MonoBehaviour {
 					selected = selected2;
 					selected2 =false;
 				}
-			}
+			//}
 			
 			/*if (selected==true){
 				GetComponentInChildren<Camera>().enabled= true;
@@ -43,14 +48,14 @@ public class Unit : MonoBehaviour {
 			}*/
 		}
 		if (Input.GetMouseButtonUp (0)) {
-			if ((Input.mousePosition.y>190)) {
+			//if ((Input.mousePosition.y>190)) {
 				if ((Mathf.Abs (Camera_UnitSelect.selection.width) > 2) && (Mathf.Abs (Camera_UnitSelect.selection.height) > 2) && Input.mousePosition.y > 190) {
 					Vector3 camPos = Camera.main.WorldToScreenPoint (transform.position);
 					camPos.y = Camera_UnitSelect.InvertMouseY (camPos.y);
 					hovered = Camera_UnitSelect.selection.Contains (camPos);
-				} else {
-					hovered = false;
-				}
+				//} else {
+					//hovered = false;
+				//}
 			}
 		}
 		if (selected){

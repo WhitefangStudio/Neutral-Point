@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class PartList : MonoBehaviour {
 	public static PartList PL;
-
+	GameObject Holder;
 	public GameObject[] parts;
 
 	public GameObject[][][][] partsSorted;
@@ -12,10 +12,13 @@ public class PartList : MonoBehaviour {
 		if (PL == null) {
 			PL=this;
 		}
-		parts = Resources.LoadAll<GameObject> ("Parts");
+		Holder= new GameObject ();
+		Holder.name = "PartList Holder";
+		parts = Resources.LoadAll<GameObject> ("Modules");
 		
 		for (int i = 0; i<parts.Length; i++) {
 			parts[i] = (GameObject)Instantiate(parts[i],new Vector3(1000,1000,1000),Quaternion.identity);
+			parts[i].transform.parent=Holder.transform;
 			//partsTemp[(int)parts[i].GetComponent<FactoryPart>().getBaseType()].Add(parts[i]);
 			
 		}
@@ -92,30 +95,5 @@ public class PartList : MonoBehaviour {
 			}
 		}
 	}
-
-
-		/*			string nameTemp=parts[i].GetComponent<FactoryPart>().getName();
-			bool same=false;
-			int j=0;
-			while(j<names.Count&&same!=true){
-
-					if(nameTemp==names[j]){
-						same=true;
-						Debug.Log ("sameNameFound");
-						for(int k=0;k<parts.Length;k++){
-							if(parts[j].GetComponent<FactoryPart>().getName()==parts[k].GetComponent<FactoryPart>().getName()){
-						   		pairs.Add (parts[j]);
-								partTemp.Remove (parts[j]);
-							}
-						}
-					parts[j].GetComponent<FactoryPart>().setPair (pairs);
-
-					}
-				j++;
-			}
-			if(same==false){
-				names.Add(nameTemp);
-			}
-		}*/
 
 }

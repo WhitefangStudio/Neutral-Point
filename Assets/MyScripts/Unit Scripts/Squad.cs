@@ -4,8 +4,10 @@ using Pathfinding;
 using System.Collections.Generic;
 
 public class Squad : MonoBehaviour {
-	
+
+	int team;
 	Vector3 target;
+	public Transform targetEnemy;
 	Path path;
 	private Camera cam = null;
 	
@@ -16,6 +18,7 @@ public class Squad : MonoBehaviour {
 			cam = GameObject.Find ("Main Camera(Clone)").GetComponent<Camera>();
 		}
 		target = new Vector3 (0, 0, 0);
+		team =PhotonNetwork.player.ID;
 	}
 	
 	// Update is called once per frame
@@ -25,12 +28,30 @@ public class Squad : MonoBehaviour {
 	
 	void CheckMouse(){
 		if (Input.GetMouseButtonUp (1)) {
-			RaycastHit hit;
-			if (Physics.Raycast	(cam.ScreenPointToRay (Input.mousePosition), out hit, Mathf.Infinity)) {
-				if(target != hit.point){
-					target = hit.point;
-					if(Selected.selected.Count()>0)
-						MoveSquad ();
+			Debug.Log (PhotonNetwork.player.ID);
+			if (Selected.selected.isMovable(0)) {
+				RaycastHit hit;
+				if (Physics.Raycast (cam.ScreenPointToRay (Input.mousePosition), out hit, Mathf.Infinity)) {
+					if (hit.collider.GetComponentInParent<Unit>()!=null) {
+						Debug.Log(hit.collider.transform.parent.GetComponent<Unit> ().player+" "+PhotonNetwork.player.ID+" "+hit.collider.transform.ToString());
+							if (hit.collider.transform.parent.GetComponent<Unit> ().player != PhotonNetwork.player.ID) {
+								targetEnemy = hit.collider.transform;
+								for (int k=0; k<Selected.selected.Count(); k++) {
+									Selected.selected.getAtPosition (k).GetComponent<Weapon> ().setTarget (hit.collider.transform);
+								}
+								Debug.Log ("attack " + hit.collider.transform.ToString ());
+							}
+					} else {
+						for (int k=0; k<Selected.selected.Count(); k++) {
+							Selected.selected.getAtPosition (k).GetComponent<Weapon> ().setTarget (null);
+							Selected.selected.getAtPosition (k).GetComponent<UnitStats> ().stopped = false;
+						}
+					}
+					if (target != hit.point) {
+						target = hit.point;
+						if (Selected.selected.Count () > 0)
+							MoveSquad ();
+					}
 				}
 			}
 		}

@@ -2,24 +2,27 @@
 using System.Collections;
 
 public class Weapon: Photon.MonoBehaviour {
-	GameObject weapon;
-	public GameObject weap;  //Drag "weap" here in the Inspector
+
+	public Transform[] nodes;
 	
 	// Use this for initialization
-	void Start () {
-		photonView.RPC("InstantiateGun",PhotonTargets.All);
+	public void AddPart (string weapon,int pos) {
+		GameObject newWeap=(GameObject)PhotonNetwork.Instantiate (weapon, nodes [pos].position, nodes [pos].rotation, 0);
+		newWeap.transform.parent=nodes[pos];
+	}
+
+	public Transform[] getWeaponList(){
+		return nodes;
+	}
+	public void setTarget(Transform target){
+		GetComponent<UnitStats> ().setTarget (target);
+		foreach(Transform node in nodes){
+			if(node.GetComponentInChildren<WeaponStats>()!=null){
+				node.GetComponentInChildren<WeaponStats>().setTarget(target);
+			}
+		}
 	}
 	
 	// Update is called once per frame
-	
-	[RPC] void InstantiateGun (){
-		weapon = (GameObject)Instantiate(weap, transform.position, transform.rotation);
-		Vector3 newY = weapon.transform.position;
-		newY.y+=1.5f;
-		weapon.transform.position= newY;
-		
-		//this is the part that is giving me trouble.
-		weapon.transform.parent=transform;
-		//fire.transform.parent = myGuy.transform;
-	}
+
 }

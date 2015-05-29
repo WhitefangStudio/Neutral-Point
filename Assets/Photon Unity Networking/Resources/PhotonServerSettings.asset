@@ -28,4 +28,7 @@ MonoBehaviour:
   - OnJoinedRoom
   - InstantiateGun
   - UpdateNetworkPosition
+  - initRPC
+  - init
+  - decHealth
   DisableAutoOpenWizard: 0

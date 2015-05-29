@@ -5,11 +5,15 @@ public class Factory : MonoBehaviour {
 	bool selected=false;
 	public int player;
 	public int position;
+	Transform spawnWaypoint;
 
 	GameObject[] slots;
 	GameObject Body;
 	GameObject Shield;
 	GameObject Armor;
+
+	string bodyName;
+	string[] slotNames;
 
 
 	// Use this for initialization
@@ -46,23 +50,28 @@ public class Factory : MonoBehaviour {
 
 	public void setPosition(GameObject part,int pos){
 		string name = part.name;
-		name ="Parts/"+name.Replace("(Clone)", "");
+		name ="Modules/"+name.Replace("(Clone)", "");
 		Debug.Log (name);
 		if (Body != null) {
 			if (slots [pos] == null) {
 				slots [pos] = PhotonNetwork.Instantiate (name, Body.transform.GetChild (pos).position, Quaternion.identity, 0);
 				slots [pos].transform.SetParent (Body.transform.GetChild (pos));
+				slotNames[pos]= "Parts/"+part.GetComponent<FactoryPart>().correspondingAttachment.ToString();
+				slotNames[pos]=slotNames[pos].Replace(" (UnityEngine.GameObject)","");
 			}
 		}
 	}
 	public void setBody(GameObject part){
 		string name = part.name;
-		name ="Parts/"+name.Replace("(Clone)", "");
+		name ="Modules/"+name.Replace("(Clone)", "");
 		if (Body == null) {
 			Body = PhotonNetwork.Instantiate (name, transform.GetChild (0).position, transform.rotation, 0);
 			Body.transform.SetParent (this.transform.GetChild (0));
 			slots = new GameObject[Body.transform.childCount];
+			slotNames = new string[slots.Length];
 			BluePrintUI.BPUI.FindActiveSlots ();
+			bodyName = "Parts/"+Body.GetComponent<FactoryPart>().correspondingAttachment.ToString();
+			bodyName =bodyName.Replace(" (UnityEngine.GameObject)","");
 		}
 		
 		
@@ -87,6 +96,24 @@ public class Factory : MonoBehaviour {
 		PhotonNetwork.Destroy (slots [position]);
 		slots [position] = null;
 		BluePrintUI.BPUI.FindActiveSlots ();
+	}
+
+	public void spawnBot(){
+		Vector3 spawnPos = new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z + 1);
+		if (bodyName == null ) {
+			ShowErrorMessage.SEM.displayError ("Unit is Missing Essential Components");
+		} else {
+			GameObject Unit;
+			Unit = PhotonNetwork.Instantiate(bodyName,spawnPos,Quaternion.identity,0);
+			Unit.GetComponent<AIPatherNew>().newPath(new Vector3(transform.position.x,transform.position.y,transform.position.z-30));
+			for(int i =0; i <slotNames.Length;i++){
+				if(slotNames[i]!=null){
+					if(Unit.GetComponent<Weapon>()!=null){
+						Unit.GetComponent<Weapon>().AddPart(slotNames[i],i);
+					}
+				}
+			}
+		}
 	}
 
 }

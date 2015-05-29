@@ -16,7 +16,6 @@ public class AIPatherNew : MonoBehaviour {
 	float dist;
 	private Camera cam = null;
 	bool move;
-	bool rayHit;
 	public float moveSpeed = 30f; 
 	public LayerMask mask;
 
@@ -38,14 +37,23 @@ public class AIPatherNew : MonoBehaviour {
 		move = true;
 	}
 
-	
+	public void newPath(Vector3 position){
+		target = position;
+		Invoke("spawnWaypoint",.5f);
+	}
+	void spawnWaypoint(){
+		seeker.StartPath (transform.position, target, onComplete);
+	}
+	public void onComplete(Path p){
+		path = p.vectorPath;
+		currentWaypoint = 0;
+		move = true;
+	}
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (path == null) {
 			return;
 		}
-			
-		RayCast ();
 		if(currentWaypoint >= path.Count){
 			move = false;
 		
@@ -61,8 +69,6 @@ public class AIPatherNew : MonoBehaviour {
 			controller.Move (transform.forward * moveSpeed);
 			GetComponent<Rigidbody>().freezeRotation = true;
 			GetComponent<Rigidbody>().velocity = Vector3.zero;
-			if(rayHit)
-				move = true;
 			return;
 		}
 		dist= Vector3.Distance(transform.position,path[currentWaypoint]);
@@ -72,21 +78,6 @@ public class AIPatherNew : MonoBehaviour {
 			
 		}
 	}
-
-	void RayCast(){
-		Vector3 forward = transform.TransformDirection (Vector3.forward);
-		RaycastHit hit;
-			if (Physics.Raycast (transform.position, forward,out hit, 1f)) {
-					rotate ();
-					move = false;
-					rayHit=true;
-					rotate ();
-					
-			}else{
-				rayHit= false;
-			}
-	}
-
 	void rotate(){
 		Quaternion targetRotation = Quaternion.LookRotation (path[currentWaypoint]-transform.position);
 
@@ -119,6 +110,11 @@ public class AIPatherNew : MonoBehaviour {
 		} else {
 			GetComponent<Rigidbody>().velocity = Vector3.zero;
 		}
+	}
+
+	public void stop(){
+		Debug.Log ("binkus");
+		move = false;
 	}
 
 }
