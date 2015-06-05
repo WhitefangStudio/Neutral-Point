@@ -16,7 +16,9 @@ public class Bullet : MonoBehaviour {
 	void Update(){
 		timer -= Time.deltaTime;
 		if (timer <= 0) {
-			PhotonNetwork.Destroy(this.gameObject);
+			if(this.GetComponent<PhotonView>().isMine){
+				PhotonNetwork.Destroy(this.gameObject);
+			}
 		}
 	}
 	[RPC]

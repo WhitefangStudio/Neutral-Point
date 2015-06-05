@@ -4,7 +4,7 @@ using System.Collections;
 public class NetworkManager : MonoBehaviour {
 
 	// Use this for initialization
-	
+	public bool isOffline;
 
 	
 	
@@ -16,7 +16,12 @@ public class NetworkManager : MonoBehaviour {
 				}
 	}	
 	void Connect(){
-		PhotonNetwork.ConnectUsingSettings("V002");
+		if (isOffline) {
+			PhotonNetwork.offlineMode = true;
+			OnJoinedRoom();
+		} else {
+			PhotonNetwork.ConnectUsingSettings ("V002");
+		}
 	}
 	
 	void OnGUI(){

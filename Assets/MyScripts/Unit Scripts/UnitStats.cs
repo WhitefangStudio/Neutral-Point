@@ -19,7 +19,9 @@ public class UnitStats : MonoBehaviour {
 	void Update () {
 		if (health < 0&&this.gameObject!=null) {
 			Selected.selected.removeFromSelected(this.transform);
-			PhotonNetwork.Destroy(this.gameObject);
+			if(this.GetComponent<PhotonView>().isMine){
+				PhotonNetwork.Destroy(this.gameObject);
+			}
 		}
 		if (target != null) {
 			if (Vector3.Distance (this.transform.position, target.position) <= stopRange) {
